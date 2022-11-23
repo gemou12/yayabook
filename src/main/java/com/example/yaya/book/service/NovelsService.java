@@ -3,13 +3,10 @@ package com.example.yaya.book.service;
 import com.example.yaya.book.dao.NovelsDao;
 import com.example.yaya.book.model.Novels;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class NovelsService {
@@ -43,6 +40,15 @@ public class NovelsService {
     public Collection<Novels> findByNovelNameLike(int page, int rows, String name)  {
         PageRequest pageRequest = PageRequest.of(page-1,rows);
         return novelsdao.findByNovelNameLike(name,pageRequest);
+    }
+
+    public Collection<Novels> findByNovelCopywritingLike(int page, int rows, String name)  {
+        PageRequest pageRequest = PageRequest.of(page-1,rows);
+        return novelsdao.findByNovelCopywritingLike(name,pageRequest);
+    }
+    public Collection<Novels> findByAuthorNameLike(int page, int rows, String name)  {
+        PageRequest pageRequest = PageRequest.of(page-1,rows);
+        return novelsdao.findByAuthorNameLike(name,pageRequest);
     }
 
 }

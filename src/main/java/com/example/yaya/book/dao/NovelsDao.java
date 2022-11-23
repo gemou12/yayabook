@@ -1,12 +1,8 @@
 package com.example.yaya.book.dao;
 import com.example.yaya.book.model.Novels;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
-
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -35,7 +31,7 @@ public class NovelsDao {
     public Novels updateNovelsUsingId(String id, Novels book) {
         Optional<Novels> findPersonQuery = novelsRepository.findById(id);
         Novels bookValues = findPersonQuery.get();
-        // bookValues.setId(Novels.getId());
+        //bookValues.setId(Novels.getId());
         return novelsRepository.save(bookValues);
     }
 
@@ -48,6 +44,12 @@ public class NovelsDao {
     }
     public Collection<Novels> findByNovelNameLike(String name, Pageable pageable) {
         return novelsRepository.findByNovelNameLike(name, pageable).getContent();
+    }
+    public Collection<Novels> findByNovelCopywritingLike(String name, Pageable pageable) {
+        return novelsRepository.findByNovelCopywritingLike(name, pageable).getContent();
+    }
+    public Collection<Novels> findByAuthorNameLike(String name, Pageable pageable) {
+        return novelsRepository.findByAuthorNameLike(name, pageable).getContent();
     }
 }
 
